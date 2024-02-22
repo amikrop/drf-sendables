@@ -8,13 +8,13 @@ User messages for Django REST Framework
    :target: https://pypi.org/project/drf-sendables/
    :alt: PyPI
 
-.. image:: https://img.shields.io/pypi/l/drf-sendables.svg
-   :target: https://pypi.org/project/drf-sendables/
-   :alt: PyPI - License
-
 .. image:: https://img.shields.io/pypi/pyversions/drf-sendables.svg
    :target: https://pypi.org/project/drf-sendables/
    :alt: PyPI - Python Version
+
+.. image:: https://img.shields.io/pypi/l/drf-sendables.svg
+   :target: https://pypi.org/project/drf-sendables/
+   :alt: PyPI - License
 
 .. image:: https://github.com/amikrop/drf-sendables/actions/workflows/main.yml/badge.svg
    :target: https://github.com/amikrop/drf-sendables/actions/
