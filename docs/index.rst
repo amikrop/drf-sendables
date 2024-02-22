@@ -14,7 +14,7 @@ Installation
 
 The following versions are supported:
 
-    - Python: 3.10, 3.11
+    - Python: 3.10 - 3.12
     - Django: 3.0 - 5.0
     - Django REST Framework: 3.10 - 3.14
 
