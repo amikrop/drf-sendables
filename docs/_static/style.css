@@ -1,0 +1,3 @@
+html.writer-html5 .rst-content dl.field-list {
+    grid-template-columns: auto minmax(71%, 95%);
+}

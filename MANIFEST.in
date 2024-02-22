@@ -1,0 +1,11 @@
+graft docs
+prune docs/_build
+
+graft tests
+include runtests.py
+include tox.ini
+
+global-exclude __pycache__
+global-exclude *.py[cod]
+
+prune **/migrations
