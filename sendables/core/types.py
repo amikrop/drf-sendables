@@ -23,8 +23,7 @@ if TYPE_CHECKING:
     class GenericViewProtocol(Protocol):
         kwargs: dict[str, Any]
 
-        def get_serializer_context(self) -> dict[str, Any]:
-            ...
+        def get_serializer_context(self) -> dict[str, Any]: ...
 
     class ManagedModel(models.Model):
         objects: models.Manager

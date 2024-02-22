@@ -16,9 +16,9 @@ User messages for Django REST Framework
    :target: https://pypi.org/project/drf-sendables/
    :alt: PyPI - Python Version
 
-.. image:: https://codecov.io/gh/amikrop/drf-sendables/branch/main/graph/badge.svg
-   :target: https://codecov.io/gh/amikrop/drf-sendables
-   :alt: Coverage
+.. image:: https://github.com/amikrop/drf-sendables/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/amikrop/drf-sendables/actions/
+   :alt: Workflows
 
 .. image:: https://readthedocs.org/projects/drf-sendables/badge/?version=latest
    :target: https://drf-sendables.readthedocs.io/en/latest/?badge=latest
