@@ -1,0 +1,4 @@
+djangorestframework
+sphinx-rtd-theme
+sphinxcontrib-httpdomain
+sphinx-toolbox
