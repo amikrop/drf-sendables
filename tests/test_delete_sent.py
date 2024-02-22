@@ -72,9 +72,12 @@ class MessageDeleteSentTests(TestSentMixin, FixturesMixin, MessageMixin, APITest
 
         self.delete(sendable_ids)
 
-        _, result_sendables, result_received_sendables, result_associations = (
-            self.get_records(assert_removed=True)
-        )
+        (
+            _,
+            result_sendables,
+            result_received_sendables,
+            result_associations,
+        ) = self.get_records(assert_removed=True)
 
         self.assertQuerySetEqual(result_sendables, sendables)
         self.assertQuerySetEqual(result_received_sendables, received_sendables)
@@ -103,9 +106,12 @@ class MessageDeleteSentTests(TestSentMixin, FixturesMixin, MessageMixin, APITest
 
         self.delete(queried_ids)
 
-        _, result_sendables, result_received_sendables, result_associations = (
-            self.get_records(assert_removed=True)
-        )
+        (
+            _,
+            result_sendables,
+            result_received_sendables,
+            result_associations,
+        ) = self.get_records(assert_removed=True)
 
         self.assertQuerySetEqual(result_sendables, sendables)
         self.assertQuerySetEqual(result_received_sendables, received_sendables)
@@ -135,9 +141,12 @@ class MessageDeleteSentTests(TestSentMixin, FixturesMixin, MessageMixin, APITest
             response, self.entity_name + "_ids", expected_error_message, "invalid"
         )
 
-        _, result_sendables, result_received_sendables, result_associations = (
-            self.get_records()
-        )
+        (
+            _,
+            result_sendables,
+            result_received_sendables,
+            result_associations,
+        ) = self.get_records()
 
         self.assertQuerySetEqual(result_sendables, sendables)
         self.assertQuerySetEqual(result_received_sendables, received_sendables)
@@ -184,13 +193,17 @@ class MessageDeleteSentTests(TestSentMixin, FixturesMixin, MessageMixin, APITest
     def test_delete_sent_no_received(self) -> None:
         sendable_ids, _, received_sendables, _ = self.get_records()
 
-        sendable_id_to_delete, received_sendable_ids_to_delete = (
-            self.delete_sample_records(sendable_ids, received_sendables)
-        )
+        (
+            sendable_id_to_delete,
+            received_sendable_ids_to_delete,
+        ) = self.delete_sample_records(sendable_ids, received_sendables)
 
-        _, result_sendables, result_received_sendables, result_associations = (
-            self.get_records(assert_removed=True)
-        )
+        (
+            _,
+            result_sendables,
+            result_received_sendables,
+            result_associations,
+        ) = self.get_records(assert_removed=True)
 
         expected_sendables = (
             self.sendable_class.objects.filter(sender=self.sender)
@@ -216,9 +229,12 @@ class MessageDeleteSentTests(TestSentMixin, FixturesMixin, MessageMixin, APITest
             sendable_ids, received_sendables
         )
 
-        _, result_sendables, result_received_sendables, result_associations = (
-            self.get_records(assert_removed=True)
-        )
+        (
+            _,
+            result_sendables,
+            result_received_sendables,
+            result_associations,
+        ) = self.get_records(assert_removed=True)
 
         self.assertQuerySetEqual(result_sendables, sendables)
 
