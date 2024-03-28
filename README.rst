@@ -36,7 +36,7 @@ The following versions are supported:
 
     - Python: 3.10 - 3.12
     - Django: 3.0 - 5.0
-    - Django REST Framework: 3.10 - 3.14
+    - Django REST Framework: 3.10 - 3.15
 
 - Install via `pip <https://packaging.python.org/tutorials/installing-packages/>`_:
 
