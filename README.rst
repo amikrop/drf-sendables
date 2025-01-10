@@ -76,7 +76,7 @@ where ``"some-path/"`` could be any URL.
 Usage
 -----
 
-You can find the description of the app's `endpoints <https://drf-sendables.readthedocs.io/en/latest/endpoints.html>`_
+You can find the description of the app's `endpoints <https://drf-sendables.readthedocs.io/en/latest/api.html#endpoints>`_
 in the `documentation <https://drf-sendables.readthedocs.io/en/latest/>`_. For customized usage, see the relevant
 `page <https://drf-sendables.readthedocs.io/en/latest/custom.html>`_.
 
