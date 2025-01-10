@@ -1,4 +1,4 @@
-from typing import Sequence
+from typing import Collection, Sequence, cast
 
 from django.db.models import QuerySet
 from rest_framework import status
@@ -22,7 +22,7 @@ class MessageDeleteSentTests(TestSentMixin, FixturesMixin, MessageMixin, APITest
         self, queryset: QuerySet, expected_queryset: QuerySet
     ) -> None:
         try:
-            super().assertQuerySetEqual(queryset, expected_queryset)
+            super().assertQuerySetEqual(queryset, cast(Collection, expected_queryset))
         except AttributeError:
             expected_list = list(expected_queryset)
             if (
@@ -95,7 +95,7 @@ class MessageDeleteSentTests(TestSentMixin, FixturesMixin, MessageMixin, APITest
         not_owned_record = self.sendable_class.objects.create(
             content="321", sender=self.user
         )
-        return not_owned_record.id
+        return cast(int, not_owned_record.id)
 
     def test_delete_sent_valid_and_invalid_ids_lenient(self) -> None:
         sendable_ids, sendables, received_sendables, _ = self.get_records()

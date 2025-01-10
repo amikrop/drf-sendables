@@ -32,8 +32,7 @@ class DeleteTests(FixturesMixin):
 
         received_sendable_ids = received_sendables.values_list("id", flat=True)
         sendable_ids = [
-            received_sendable.sendable.id  # type: ignore[union-attr]
-            for received_sendable in received_sendables
+            received_sendable.sendable.id for received_sendable in received_sendables
         ]
 
         starting_sendables_count = len(sendable_ids)
@@ -107,7 +106,7 @@ class DeleteTests(FixturesMixin):
 
     def get_not_owned_id(self) -> int:
         not_owned_record = ReceivedSendable.objects.get(recipient=self.other_user)
-        return not_owned_record.id
+        return cast(int, not_owned_record.id)
 
     def test_delete_valid_and_invalid_ids_lenient(self) -> None:
         received_sendable_ids = ReceivedSendable.objects.filter(

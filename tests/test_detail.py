@@ -40,7 +40,7 @@ class DetailTests(FixturesMixin):
 
     def get_tested_record(self, sendable: Sendable) -> ReceivedSendable | Sendable:
         content_type = ContentType.objects.get_for_model(sendable.__class__)
-        return ReceivedSendable.objects.get(
+        return ReceivedSendable.objects.get(  # type: ignore[no-any-return]
             object_id=sendable.id, content_type=content_type
         )
 

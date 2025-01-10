@@ -132,7 +132,7 @@ class DetailView(ContextMixin, generics.RetrieveAPIView):
         prefetch_fields = self.entity_settings.GET_RECEIVED_PREFETCH_FIELDS(Sendable)
 
         return ReceivedSendable.objects.filter(
-            recipient=self.request.user,  # type: ignore[misc]
+            recipient=self.request.user,
             content_type=content_type,
         ).prefetch_related(*prefetch_fields)
 
