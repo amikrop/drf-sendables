@@ -157,36 +157,38 @@ class DeleteSerializer(SelectSerializer):
         # Delete inbox "copies".
         self.valid_items.delete()
 
-        if self.entity_settings.DELETE_HANGING_SENDABLES:
-            Sendable = self.entity_settings.SENDABLE_CLASS
-            content_type = ContentType.objects.get_for_model(Sendable)
+        if not self.entity_settings.DELETE_HANGING_SENDABLES:
+            return
 
-            # Now that the received sendable references are deleted, those of their
-            # respective sendables which are marked as removed from their senders'
-            # outboxes, are no longer needed. Find the unreferenced ones by selecting
-            # all referenced sendables, then get those of the queried ones that are not
-            # in that set.
+        Sendable = self.entity_settings.SENDABLE_CLASS
+        content_type = ContentType.objects.get_for_model(Sendable)
 
-            referenced_sendable_ids = ReceivedSendable.objects.filter(
-                content_type=content_type
-            ).values("object_id")
+        # Now that the received sendable references are deleted, those of their
+        # respective sendables which are marked as removed from their senders'
+        # outboxes, are no longer needed. Find the unreferenced ones by selecting
+        # all referenced sendables, then get those of the queried ones that are not
+        # in that set.
 
-            sendable_ids = Sendable.objects.filter(id__in=sendable_ids_set).values("id")
+        referenced_sendable_ids = ReceivedSendable.objects.filter(
+            content_type=content_type
+        ).values("object_id")
 
-            unreferenced_sendable_ids = sendable_ids.difference(referenced_sendable_ids)
+        sendable_ids = Sendable.objects.filter(id__in=sendable_ids_set).values("id")
 
-            # Delete unreferenced sendables which are removed from their outboxes,
-            # along with their recipient-sendable association records.
+        unreferenced_sendable_ids = sendable_ids.difference(referenced_sendable_ids)
 
-            ids_for_deleting = Sendable.objects.filter(
-                id__in=unreferenced_sendable_ids, is_removed=True
-            ).values("id")
+        # Delete unreferenced sendables which are removed from their outboxes,
+        # along with their recipient-sendable association records.
 
-            RecipientSendableAssociation.objects.filter(
-                object_id__in=ids_for_deleting, content_type=content_type
-            ).delete()
+        ids_for_deleting = Sendable.objects.filter(
+            id__in=unreferenced_sendable_ids, is_removed=True
+        ).values("id")
 
-            Sendable.objects.filter(id__in=ids_for_deleting).delete()
+        RecipientSendableAssociation.objects.filter(
+            object_id__in=ids_for_deleting, content_type=content_type
+        ).delete()
+
+        Sendable.objects.filter(id__in=ids_for_deleting).delete()
 
 
 class DeleteSentSerializer(SelectSerializer):
